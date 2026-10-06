@@ -23,6 +23,7 @@ Exemplo de primeiros passos em machine learning com .NET 10 e [ML.NET](https://l
 - **Predição**: `AnalisadorLocal` encapsula um `PredictionEngine` atrás da interface `IAnalisadorSentimento`.
 - **Serviço externo**: `AnalisadorExterno` chama qualquer `IChatClient`. A demo usa `ChatClientSimulado`, então roda sem chaves nem rede.
 - **Estratégia híbrida**: `AnalisadorHibrido` usa o modelo local e só chama o serviço externo quando a confiança fica abaixo de um limite (0,75).
+- **Serviço** (`SentimentoApi`): minimal API que serve o modelo salvo com `PredictionEnginePool` (`Microsoft.Extensions.ML`). Copie o `modelo-sentimento.zip` da pasta de saída do console para junto dela, rode `dotnet run --project src/SentimentoApi` e faça `POST /sentimento` com `{"texto":"..."}`.
 
 ## Dataset
 
@@ -63,6 +64,7 @@ src/SentimentoMl/
   ChatClientSimulado.cs      substituto offline de um fornecedor
   Program.cs                 demo de ponta a ponta
   Data/avaliacoes.tsv        dataset de exemplo
+src/SentimentoApi/           minimal API com PredictionEnginePool
 ```
 
 ## Notas
